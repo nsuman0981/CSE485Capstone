@@ -172,6 +172,7 @@ nav {
 .fName label, .lName label {
   margin-bottom: 5px;
   width: 300px;
+  font-size: 1.4rem;
 }
 
 .fName input, .lName input {
@@ -198,6 +199,7 @@ nav {
  /* padding-right: 50px;*/
   margin-bottom: 5px;
   text-align: left;
+  font-size: 1.4rem;
 }
 .form-group input {
   padding: 5px;
@@ -211,7 +213,7 @@ input {
 }
 /* Information Updated Msg Font*/
 #userForm {
-  font-size: 1.4rem;
+  font-size: .5rem;
   
 }
 #submit{
