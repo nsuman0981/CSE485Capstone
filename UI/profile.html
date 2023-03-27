@@ -1,0 +1,163 @@
+<!--Front end does not handle duplicate usernames. Back end must implement that. Back end
+must also handle passwords and allow user to save changes if information requirements are satisfied.
+No empty blanks allowed.-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>UTM for UAS Systems</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/ffd3683b0c.js" crossorigin="anonymous"></script>
+</head>
+  <body>
+    <!-- Navigation bar -->
+    <nav>
+        <div class="nav-header">
+          <h3 style="margin: 2rem 0 2rem 3rem;">Honeywell</h3>
+          <h2 class="nav-header">
+            <i class="fa-solid fa-layer-group"></i><a href="capstone.html"><span style="padding-left: .7rem; font-size: 1.125rem;">Summary</span></a></li>
+          </h2>
+        </div>
+        <ul class="nav-list">
+          <li><i class="fa-solid fa-paper-plane"></i><a href="flights.html"><span style="padding-left: .7rem;">Flights</span></a></li>
+          <li><i class="fa-solid fa-plane"></i><a href="#"><span style="padding-left: .7rem;">Aircraft</span></a></li>
+          <li><i class="fa-solid fa-user"></i><a href="profile.html"><span style="padding-left: .7rem;">Profile</span></a></li>
+          <li><i class="fa-solid fa-gear"></i><a href="#"><span style="padding-left: .7rem;">Settings</span></a></li>
+        </ul>
+        <ul class="nav-list bottom-list">
+          <li style="margin-top: 8rem;"><a href="#">Help</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><i class="fa-solid fa-arrow-right-from-bracket" style="color: #888;"></i><a href="#"><span style="padding-left: .7rem;">Log out</span></a></li>
+        </ul>
+      </nav>
+  </body>
+
+    
+
+        <!-- Main content area -->
+  <main>    
+    <div class="user-nav">
+      <a href="#" class="notification-icon"><i class="fa-solid fa-bell"></i>
+      <a href="#" class="profile-icon"><i class="fa-solid fa-user"></i>
+      <span class="user-text">User</span>
+    </div>
+  </main>
+  <body>
+    <div class="Profile">
+      <div class = "profileHeader">
+        <h2>Account Information</h2>
+      </div>
+      <form id="userForm">
+                
+        <div class = "firstAndLastName">
+          <div class ="fName">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" value="John">
+          </div>
+                    
+          <div class = "lName">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" value="Doe" class = "widthControl">
+          </div>
+        </div>
+        <div class = "otherAccountInfo">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="johndoe@example.com">
+          </div>
+          <div class="form-group">
+            <label for="role">Job Role:</label>
+            <input type="text" id="role" name="role" value="Product Manager">
+          </div>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="johndoe">
+          </div>
+                
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="password">
+          </div>
+        </div>
+            
+        <button id="submit" onclick= "updateInfo()">Save Changes</button>
+        <div id="savingMyChanges"></div>
+
+                
+      </form>
+
+    </div>
+
+    <script>
+      let msgDisplayed = false;
+
+      function updateInfo() {
+
+        //This is to prevent page from refreshing so that the "Information Updated" sentence
+        // will stay on the page instead of popping up for a second
+        event.preventDefault();
+		    const firstName = document.getElementById('firstName').value;
+		    const lastName = document.getElementById('lastName').value;
+		    const email = document.getElementById('email').value;
+        const role = document.getElementById('role').value;
+		    const username = document.getElementById('username').value;
+		    const password = document.getElementById('password').value;
+
+		    localStorage.setItem('firstName', firstName);
+		    localStorage.setItem('lastName', lastName);
+		    localStorage.setItem('email', email);
+        localStorage.setItem('role', role);
+		    localStorage.setItem('username', username);
+		    localStorage.setItem('password', password);
+
+        // Print this message after user clicks "Save Changes" button
+        const form = document.getElementById('userForm');
+        const msg = document.createElement('p');
+        msg.textContent = "Information Updated!";
+
+
+        //Checks to see if "Information Updated!" is already displayed so that it only shows up once
+        // no matter how many times Save Changes button was clicked. 
+        if(!msgDisplayed) {
+          form.appendChild(msg);
+          msgDisplayed = true;
+        }
+
+        // Remove "Information Updated!" when user clicks in a text box again
+        const userInput = form.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+        userInput.forEach(input => {
+          input.addEventListener('focus', () => {
+          msg.remove();
+          msgDisplayed = false;
+          });
+        });
+            
+
+            
+      }
+
+      // Get saved values
+      const savedFirstName = localStorage.getItem('firstName');
+      const savedLastName = localStorage.getItem('lastName');
+      const savedEmail = localStorage.getItem('email');
+      const savedRole = localStorage.getItem('role');
+      const savedUsername = localStorage.getItem('username');
+      const savedPassword = localStorage.getItem('password');
+
+      // Update and save user input
+      document.getElementById('firstName').value = savedFirstName;
+      document.getElementById('lastName').value = savedLastName;
+      document.getElementById('email').value = savedEmail;
+      document.getElementById('role').value = savedRole;
+      document.getElementById('username').value = savedUsername;
+      document.getElementById('password').value = savedPassword;
+
+        </script>   
+    </div>
+  </body>
+
+</html>
