@@ -1,12 +1,13 @@
+
 nav {
-    background-color: #383838;
-    color: #fff;
-    height: 100vh;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    font-family: 'Montserrat', sans-serif;
+  background-color: #383838;
+  color: #fff;
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -125,7 +126,11 @@ nav {
   padding: 10px;
   font-family: 'Montserrat', sans-serif;
 }
-/* Style of Profile Page*/
+/*
+*
+* Style of Profile Page
+*
+*/
 .Profile {
   margin-top: 10px;
   margin-left: 280px;
@@ -200,13 +205,15 @@ nav {
   margin-bottom: 5px;
   text-align: left;
   font-size: 1.4rem;
+  
 }
 .form-group input {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid black;
+  
 }
-/* User input of First Name, Last Name, etc*/
+/* User input for both Profile and Contact Us page*/
 input {
   padding-right: 100px;
   margin-bottom: 10px;
@@ -217,5 +224,66 @@ input {
   
 }
 #submit{
-  margin-top: 8.5rem;
+  margin-top: 6rem;
+}
+
+/*
+*
+* Contact Us Page
+*
+*/
+.ContactInfo {
+  margin-top: 10px;
+  margin-left: 280px;
+  margin-bottom: 5px;
+  color: #202123;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+  text-align: right;
+  
+  
+}
+.contactHeader {
+  position: absolute;
+  top:0rem;
+  font-size: 1.4rem;
+  margin-top: 10px;
+  
+ 
+  
+}
+
+.formFillOut {
+  
+  margin-top: 80px;
+  
+}
+.contactGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+/* Other Account Info etc*/
+
+.contactGroup label {
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 1.4rem;
+  padding-right: 461px;
+}
+.formFillOut input, textarea {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+#messageHere {
+  height: 90px;
+}
+
+/* Information Updated Msg Font*/
+#contactForm {
+  font-size: .5rem;
+  
 }
