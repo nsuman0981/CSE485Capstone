@@ -82,6 +82,16 @@ No empty blanks allowed.-->
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="password" value="">
           </div>
+
+          <div class="form-group">
+            <label for="aircraftType">Aircraft Type:</label>
+            <input type="text" id="aircraftType" name="aircraftType" placeholder="Drone" value="">
+          </div>
+
+          <div class="form-group">
+            <label for="aircraftModel">Aircraft Model:</label>
+            <input type="text" id="aircraftModel" name="aircraftModel" placeholder="X11 Flight555" value="">
+          </div>
         </div>
             
         <button id="submit" onclick= "updateInfo()">Save Changes</button>
@@ -106,6 +116,10 @@ No empty blanks allowed.-->
         const role = document.getElementById('role').value;
 		    const username = document.getElementById('username').value;
 		    const password = document.getElementById('password').value;
+        const aircraftType = document.getElementById('aircraftType').value;
+        const aircraftModel = document.getElementById('aircraftModel').value;
+
+
 
 		    localStorage.setItem('firstName', firstName);
 		    localStorage.setItem('lastName', lastName);
@@ -113,6 +127,11 @@ No empty blanks allowed.-->
         localStorage.setItem('role', role);
 		    localStorage.setItem('username', username);
 		    localStorage.setItem('password', password);
+        localStorage.setItem('aircraftType', aircraftType);
+        localStorage.setItem('aircraftModel', aircraftModel);
+
+
+        
 
         // Print this message after user clicks "Save Changes" button
         const form = document.getElementById('userForm');
@@ -147,6 +166,11 @@ No empty blanks allowed.-->
       const savedRole = localStorage.getItem('role');
       const savedUsername = localStorage.getItem('username');
       const savedPassword = localStorage.getItem('password');
+      const savedaCType = localStorage.getItem('aircraftType');
+      const savedaCModel = localStorage.getItem('aircraftModel');
+
+      
+
 
       // Update and save user input
       document.getElementById('firstName').value = savedFirstName;
@@ -155,6 +179,10 @@ No empty blanks allowed.-->
       document.getElementById('role').value = savedRole;
       document.getElementById('username').value = savedUsername;
       document.getElementById('password').value = savedPassword;
+      document.getElementById('aircraftType').value = savedaCType;
+      document.getElementById('aircraftModel').value = savedaCModel;
+
+
 
     </script>   
     
