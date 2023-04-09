@@ -1,0 +1,178 @@
+!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>UTM for UAS Systems</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/ffd3683b0c.js" crossorigin="anonymous"></script>
+
+
+    </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav>
+        <div class="nav-header">
+          <h3 style="margin: 2rem 0 2rem 3rem;">Honeywell</h3>
+          <h2 class="nav-header">
+            <i class="fa-solid fa-layer-group"></i><a href="capstone.html"><span style="padding-left: .7rem; font-size: 1.125rem;">Summary</span></a></li>
+          </h2>
+        </div>
+        <ul class="nav-list">
+          <li><i class="fa-solid fa-paper-plane"></i><a href="flightPage.html"><span style="padding-left: .7rem;">Flights</span></a></li>
+          <li><i class="fa-solid fa-plane"></i><a href="#"><span style="padding-left: .7rem;">Aircraft</span></a></li>
+          <li><i class="fa-solid fa-user"></i><a href="profile.html"><span style="padding-left: .7rem;">Profile</span></a></li>
+          <li><i class="fa-solid fa-gear"></i><a href="#"><span style="padding-left: .7rem;">Settings</span></a></li>
+        </ul>
+        <ul class="nav-list bottom-list">
+          <li style="margin-top: 8rem;"><a href="#">Help</a></li>
+          <li><a href="flightPage.html">Contact Us</a></li>
+          <li><i class="fa-solid fa-arrow-right-from-bracket" style="color: #888;"></i><a href="#"><span style="padding-left: .7rem;">Log out</span></a></li>
+        </ul>
+      </nav>
+        
+       <!-- Add Aircraft Button --> 
+      <button onclick="openPopup()" class = "move-right2 black-button round-button">+ Add Aircraft</button>
+
+      <!-- Add Aircraft Form --> 
+      <div class="overlay" id="overlay"></div>
+      <div class="popup" id="popup">
+          <h2>Add AirCraft</h2>
+          <form>
+              <label for="name">Name:</label>
+              <input type="text" id="name">
+              <label for="make">Make:</label>
+              <select name="make" id="make">
+                  <option value="">--Select Type--</option>
+                  <option value="DJI">DJI</option>
+                  <option value="Ryze">Ryze</option>
+                  <option value="Autel Robotics">Autel Robotics</option>
+              </select>
+              <label for="model">Model:</label>
+              <select name="model" id="model">
+                  <option value="">--Select Type--</option>
+                  <option value="Air 25">AIR 25</option>
+                  <option value="Evo Lite+">Tello</option>
+                  <option value="Tello">Evo Lite+</option>
+              </select>
+              <input type="button" value="Submit" onclick="addRow()">
+          </form>
+          <button onclick="closePopup()">Close</button>
+      </div>
+
+       <!-- Sort by Aircraft name or Date Button --> 
+       <div class="sortButton2">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+            <option value="name">Name</option>
+            <option value="date">Date</option>
+            </select>
+        </div>
+
+
+        <!-- Table that holds aircraft info --> 
+        <div class = "table-container move-left">
+            <table width="60%">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                </tr>
+                </thead>
+                <tbody id = table-body>
+                <tr>
+                    <td>Nickname</td>
+                    <td>DJI</td>
+                    <td>Air 25</td>
+                </tr>
+                <tr>
+                    <td>Nickname</td>
+                    <td>Autel Robotics</td>
+                    <td>Evo Lite+</td>
+                </tr>
+                <tr>
+                    <td>Nickname</td>
+                    <td>Ryze</td>
+                    <td>Tello</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    
+          <!-- Javascript code --> 
+        <script>
+            function openPopup() {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popup").style.display = "block";
+            }
+
+            function closePopup() {
+                document.getElementById("overlay").style.display = "none";
+                document.getElementById("popup").style.display = "none";
+            }
+
+            //Takes info from add flight form and adds it to the table
+            function addRow() {
+                // Get the input values
+                var name = document.getElementById("name").value;
+                var make = document.getElementById("make").value;
+                var model = document.getElementById("model").value;
+
+                
+                // Create a new table row
+                var tableBody = document.getElementById("table-body");
+                var newRow = tableBody.insertRow();
+                
+                // Insert cells with the input values
+                var nameCell = newRow.insertCell();
+                var makeCell = newRow.insertCell();
+                var modelCell = newRow.insertCell();
+                
+                nameCell.innerHTML = name;
+                makeCell.innerHTML = make;
+                modelCell.innerHTML = model;
+
+            }
+
+            //Sorts the table
+            document.getElementById("sort-select").addEventListener("change", function() {
+                var sortValue = this.value;
+                var rows = Array.from(document.querySelectorAll("#my-table tbody tr"));
+                
+                rows.sort(function(a, b) {
+                    var aValue, bValue;
+                    
+                    if (sortValue === "name") {
+                    aValue = a.querySelector("td:nth-child(2)").textContent;
+                    bValue = b.querySelector("td:nth-child(2)").textContent;
+                    } else {
+                    aValue = new Date(a.querySelector("td:nth-child(4)").textContent);
+                    bValue = new Date(b.querySelector("td:nth-child(4)").textContent);
+                    }
+                    
+                    if (aValue < bValue) {
+                    return -1;
+                    } else if (aValue > bValue) {
+                    return 1;
+                    } else {
+                    return 0;
+                    }
+                });
+                
+                var tbody = document.querySelector("#my-table tbody");
+                tbody.innerHTML = "";
+                
+                rows.forEach(function(row) {
+                    tbody.appendChild(row);
+                });
+            });
+
+	    </script>
+  </body>
+
+  
+ 
+</html>
